@@ -14,7 +14,7 @@ var getCharacterLength = function(){
 
 var getCharacterTypePreference = function(name) {
   // ask the user if they want to include a specific type
-  var includeType = window.prompt("Would you like to include " + name + " in your password? Y/N");
+  var includeType = window.prompt("Would you like to include " + name + " characters in your password? Y/N");
   includeType = includeType.toLowerCase();
   // check that the response was valid
   var validResponses = ["y", "n"]
@@ -38,29 +38,37 @@ var characterType = function(name, min, max) {
 };
 
 var getCharacterTypes = function(){
-  // define the character types
-  var numbers = new characterType("numbers", 48, 57);
-  var uppercase = new characterType("uppercase letters", 65, 90);
-  var lowercase = new characterType("lowercase letters", 97, 122);
-  var special1 = new characterType("special characters", 32, 47);
-  var special2 = new characterType("special characters", 58, 64);
-  var special3 = new characterType("special characters", 91, 96);
-  var special4 = new characterType("special characters", 123, 126);
-  var characterTypes = [numbers, uppercase, lowercase, special1];
-
   // iterate through character types and record whether they should be included
+  var characterTypes = ["numerical", "uppercase", "lowercase", "special"];
   var typesToInclude = [];
   for (var i = 0; i < characterTypes.length; i++) {
       // set the user's "include" preference for the character type
-      var includeType = getCharacterTypePreference(characterTypes[i].name);
+      var includeType = getCharacterTypePreference(characterTypes[i]);
       // if they want to include the character type, add it to the typesToInclude array.
       if (includeType) {
-        typesToInclude.push(characterTypes[i]);
-        // if the user wants to include special characters, add all special characters to the list.
-        if (characterTypes[i].name === "special characters") {
-          typesToInclude.push(special2);
-          typesToInclude.push(special3);
-          typesToInclude.push(special4);
+        // figure out which characterType object to instantiate and include in the password
+        switch (characterTypes[i]) {
+          case "numerical":
+            let numbers = new characterType("numbers", 48, 57);
+            typesToInclude.push(numbers);
+            break;
+          case "uppercase":
+            let uppercase = new characterType("uppercase letters", 65, 90);
+            typesToInclude.push(uppercase);
+            break;
+          case "lowercase":
+            let lowercase = new characterType("lowercase letters", 97, 122);
+            typesToInclude.push(lowercase);
+            break;
+          case "special":
+            var special1 = new characterType("special characters", 32, 47);
+            var special2 = new characterType("special characters", 58, 64);
+            var special3 = new characterType("special characters", 91, 96);
+            var special4 = new characterType("special characters", 123, 126);
+            typesToInclude.push(special1, special2, special3, special4);
+            break;
+          default:
+            break;
         }
       }
     }
