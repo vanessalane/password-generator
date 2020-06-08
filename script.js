@@ -4,17 +4,11 @@ var getCharacterLength = function(){
   var length = window.prompt("Specify a character length between 8 and 128:");
   length = parseInt(length);
   // confirm that the user provided a length. If not, reprompt.
-  if (!length) {
-    window.alert("You need to provide a valid answer! Please try again.");
+  if (!length | length < 8 | length > 128) {
+    window.alert("You need to provide a password length between 8 and 128! Please try again.");
     return getCharacterLength();
   }
-  // confirm that the user provided a length between 8 and 128 (inclusive). If not, reprompt.
-  if (length < 8 | length > 128) {
-    // confirm that the user provided a length. If not, reprompt.
-    window.alert("The password can be between 8 and 128 characters long. Please try again.");
-    return getCharacterLength();
-  }
-  // if the length is valid, return.
+  // if it's a valid length, return.
   return length;
 };
 
@@ -32,6 +26,7 @@ var getCharacterTypePreference = function(name) {
     // return false if they don't want to include the character type
     return false;
   } else {
+    // return true if they want to include the character type
     return true;
   }
 }
@@ -47,20 +42,29 @@ var getCharacterTypes = function(){
   var numbers = new characterType("numbers", 48, 57);
   var uppercase = new characterType("uppercase letters", 65, 90);
   var lowercase = new characterType("lowercase letters", 97, 122);
-  var special = new characterType("special characters", 32, 47);  // need to update this to include the other ranges.
-  var characterTypes = [numbers, uppercase, lowercase, special];
-  var typesToInclude = [];
+  var special1 = new characterType("special characters", 32, 47);  // need to update this to include the other ranges.
+  var special2 = new characterType("special characters", 58, 64);  // need to update this to include the other ranges.
+  var special3 = new characterType("special characters", 91, 96);  // need to update this to include the other ranges.
+  var special4 = new characterType("special characters", 123, 126);  // need to update this to include the other ranges.
+  var characterTypes = [numbers, uppercase, lowercase, special1];
 
-  // iterate through character types and determine whether they should be included
-  for (var i=0; i < characterTypes.length; i++) {
+  // iterate through character types and record whether they should be included
+  var typesToInclude = [];
+  for (var i = 0; i < characterTypes.length; i++) {
       // set the user's "include" preference for the character type
       var includeType = getCharacterTypePreference(characterTypes[i].name);
-      // if that preference is to exclude the char type, do something
+      // if they want to include the character type, add it to the typesToInclude array.
       if (includeType) {
-        typesToInclude.push(characterTypes[i])
+        typesToInclude.push(characterTypes[i]);
+        // if the user wants to include special characters, add all special characters to the list.
+        if (characterTypes[i].name === "special characters") {
+          typesToInclude.push(special2);
+          typesToInclude.push(special3);
+          typesToInclude.push(special4);
+        }
       }
     }
-  // return the character codes that should be included
+  // return the character types that should be included in the password.
   return typesToInclude;
 };
 
@@ -74,8 +78,8 @@ function generateCharacterCode(characterTypes) {
 
 function generatePassword() {
   // define the length and character types to include
-  var passwordLength = getCharacterLength();
-  var typesToInclude = getCharacterTypes();
+  var passwordLength = getCharacterLength();  // should be an integer
+  var typesToInclude = getCharacterTypes();  // array of characterType objects
   // write the password
   var password = "";
   for (i = 0; i < passwordLength; i++) {
