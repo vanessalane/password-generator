@@ -42,10 +42,10 @@ var getCharacterTypes = function(){
   var numbers = new characterType("numbers", 48, 57);
   var uppercase = new characterType("uppercase letters", 65, 90);
   var lowercase = new characterType("lowercase letters", 97, 122);
-  var special1 = new characterType("special characters", 32, 47);  // need to update this to include the other ranges.
-  var special2 = new characterType("special characters", 58, 64);  // need to update this to include the other ranges.
-  var special3 = new characterType("special characters", 91, 96);  // need to update this to include the other ranges.
-  var special4 = new characterType("special characters", 123, 126);  // need to update this to include the other ranges.
+  var special1 = new characterType("special characters", 32, 47);
+  var special2 = new characterType("special characters", 58, 64);
+  var special3 = new characterType("special characters", 91, 96);
+  var special4 = new characterType("special characters", 123, 126);
   var characterTypes = [numbers, uppercase, lowercase, special1];
 
   // iterate through character types and record whether they should be included
