@@ -65,7 +65,12 @@ var getCharacterTypes = function(){
       }
     }
   // return the character types that should be included in the password.
-  return typesToInclude;
+  if (typesToInclude.length === 0) {
+    window.alert("You must include uppercase, lowercase, numerical, and/or special characters to generate a password. Please try again.")
+    return getCharacterTypes();
+  } else {
+    return typesToInclude;
+  }
 };
 
 function generateCharacterCode(characterTypes) {
