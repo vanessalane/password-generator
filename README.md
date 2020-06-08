@@ -1,4 +1,5 @@
 # JS Password Generator
+deployed url: https://vanessalane.github.io/password-generator/
 
 ## User Story
 AS AN employee with access to sensitive data
