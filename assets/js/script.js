@@ -1,32 +1,37 @@
-// assignment code here
 var getCharacterLength = function(){
+
   // prompt users for the length that they need
   var length = window.prompt("Specify a character length between 8 and 128:");
   length = parseInt(length);
+
   // confirm that the user provided a length. If not, reprompt.
   if (!length | length < 8 | length > 128) {
     window.alert("You need to provide a password length between 8 and 128! Please try again.");
     return getCharacterLength();
   }
+
   // if it's a valid length, return.
   return length;
 };
 
 var getCharacterTypePreference = function(name) {
+
   // ask the user if they want to include a specific type
   var includeType = window.prompt("Would you like to include " + name + " characters in your password? Y/N");
   includeType = includeType.toLowerCase();
+
   // check that the response was valid
   var validResponses = ["y", "n"]
   if (!includeType | !validResponses.includes(includeType)) {
+
     // if not, prompt again 
     window.alert("You need to provide a valid answer! Please try again.");
     return getCharacterTypePreference(name);
-  } else if (includeType === "n") {
-    // return false if they don't want to include the character type
+  }  // return false if they don't want to include the character type
+  else if (includeType === "n") {
     return false;
-  } else {
-    // return true if they want to include the character type
+  } // return true if they want to include the character type
+  else {
     return true;
   }
 }
