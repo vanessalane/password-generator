@@ -1,137 +1,116 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+* {
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
-
-html,
-body,
-.wrapper {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  font-family: sans-serif;
-  background-color: #f9fbfd;
+    background-color: #98A886;
 }
-
-.wrapper {
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+main {
+    width: 50%;
+    margin: auto;
 }
-
 header {
-  text-align: center;
-  padding: 20px;
-  padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+    padding: 50px 10px;
 }
 
+/* text styles start */
+h1, h2 {
+    font-family: 'Oswald', sans-serif;
+}
+h1 {
+    font-size: 63px;
+    text-align: center;
+    color: #FFFDF5;
+}
+h2 {
+    font-size: 24px;
+    color: #1C4B67;
+}
+/* text styles end */
+
+/* card styles start */
 .card {
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 5px;
-  border-width: 1px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-  color: hsl(206, 17%, 28%);
-  font-size: 18px;
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 30px 40px;
+    border-radius: 5px;
+    background-color: #FFFDF5;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    padding: 10px 30px 15px 30px;
+    margin-bottom: 16px;
 }
-
-.card-header::after {
-  content: " ";
-  display: block;
-  width: 100%;
-  background: #e7e9eb;
-  height: 2px;
+.card-title {
+    padding-bottom: 8px;
 }
-
-.card-body {
-  min-height: 100px;
+.card-content {
+    color: #0D1321;
+    margin: auto;
 }
+/* card styles end */
 
-.card-footer {
-  text-align: center;
+/* password styles start */
+#password-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
-
-.card-footer::before {
-  content: " ";
-  display: block;
-  width: 100%;
-  background: #e7e9eb;
-  height: 2px;
-}
-
-.card-footer::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
-
-.btn {
-  border: none;
-  background-color: hsl(360, 91%, 36%);
-  border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
-  color: hsl(0, 0%, 100%);
-  display: inline-block;
-  font-size: 22px;
-  line-height: 22px;
-  margin: 16px 16px 16px 20px;
-  padding: 14px 34px;
-  text-align: center;
-  cursor: pointer;
-}
-
-button[disabled] {
-  cursor: default;
-  background: #c0c7cf;
-}
-
-.float-right {
-  float: right;
-}
-
 #password {
-  -webkit-appearance: none;
-  -moz-appearance: none;
+    margin-bottom: 0px;
+    border-bottom: 0.5px solid #577399;
+    flex-grow: 1;
+}
+#generated-password {
+
+    font-size: 20px;
+}
+.bi-arrow-repeat:hover {
+    fill: #C8553D;
+}
+/* password styles end */
+
+/* form styles start */
+.form-body {
+    font-size: 12px;
+}
+#form-message {
+    color: #a39997;
+}
+label.checkbox-label input[type=checkbox]{
+    position: relative;
+    vertical-align: middle;
+    bottom: 1px;
+}
+#slide-container {
+    width: 100%;
+    margin-bottom: 16px;
+}
+.slider {
+    -webkit-appearance: none;
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    height: 2px;
+    outline: none;
+    opacity: 0.7;
+    background-color: #577399;
+    border-radius: 30px;
+    transition: opacity .2s;
+    width: 100%;
+}
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
   appearance: none;
-  border: none;
-  display: block;
-  width: 100%;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 85px;
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px dashed #c0c7cf;
-  border-radius: 6px;
-  resize: none;
-  overflow: hidden;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  border-radius: 30px;
+  background: #577399; /* Green background */
 }
-
-@media (max-width: 690px) {
-  .btn {
-    font-size: 1rem;
-    margin: 16px 0px 0px 0px;
-    padding: 10px 15px;
-  }
-
-  #password {
-    font-size: 1rem;
-  }
+.slider::-moz-range-thumb {
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: #577399; /* Green background */
 }
-
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
-  }
+#character-types {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
 }
+/* form styles end */

@@ -1,103 +1,95 @@
-var getCharacterLength = function(){
+// load DOM elements
+var generateBtn = document.querySelector("#generate-button");
+var passwordLengthSlider = document.querySelector("#character-count");
 
-  // prompt users for the length that they need
-  var length = window.prompt("Specify a character length between 8 and 128:");
-  length = parseInt(length);
-
-  // confirm that the user provided a length. If not, reprompt.
-  if (!length | length < 8 | length > 128) {
-    window.alert("You need to provide a password length between 8 and 128! Please try again.");
-    return getCharacterLength();
-  }
-
-  // if it's a valid length, return.
-  return length;
-};
-
-var getCharacterTypePreference = function(name) {
-
-  // ask the user if they want to include a specific type
-  var includeType = window.prompt("Would you like to include " + name + " characters in your password? Y/N");
-  includeType = includeType.toLowerCase();
-
-  // check that the response was valid
-  var validResponses = ["y", "n"]
-  if (!includeType | !validResponses.includes(includeType)) {
-
-    // if not, prompt again 
-    window.alert("You need to provide a valid answer! Please try again.");
-    return getCharacterTypePreference(name);
-  }  // return false if they don't want to include the character type
-  else if (includeType === "n") {
-    return false;
-  } // return true if they want to include the character type
-  else {
-    return true;
-  }
-}
-
+// characterType object model
 var characterType = function(name, min, max) {
   this.name = name,
   this.min = min,
   this.max = max
 };
 
-var getCharacterTypes = function(){
-  // iterate through character types and record whether they should be included
-  var characterTypes = ["numerical", "uppercase", "lowercase", "special"];
+var getCharacterLength = function(){
+  // get the length from the slider element
+  var slider = document.querySelector("#character-count");
+  var length = slider.value;
+  return parseInt(length);
+};
+
+var getCharacterTypePreferences = function() {
+  // define the potential character types
+  var characterTypes = ["number", "uppercase", "lowercase", "special"];
+
+  // get the selected character types from the DOM
   var typesToInclude = [];
   for (var i = 0; i < characterTypes.length; i++) {
-      // set the user's "include" preference for the character type
-      var includeType = getCharacterTypePreference(characterTypes[i]);
-      // if they want to include the character type, add it to the typesToInclude array.
-      if (includeType) {
-        // figure out which characterType object to instantiate and include in the password
-        switch (characterTypes[i]) {
-          case "numerical":
-            let numbers = new characterType("numbers", 48, 57);
-            typesToInclude.push(numbers);
-            break;
-          case "uppercase":
-            let uppercase = new characterType("uppercase letters", 65, 90);
-            typesToInclude.push(uppercase);
-            break;
-          case "lowercase":
-            let lowercase = new characterType("lowercase letters", 97, 122);
-            typesToInclude.push(lowercase);
-            break;
-          case "special":
-            var special1 = new characterType("special characters", 32, 47);
-            var special2 = new characterType("special characters", 58, 64);
-            var special3 = new characterType("special characters", 91, 96);
-            var special4 = new characterType("special characters", 123, 126);
-            typesToInclude.push(special1, special2, special3, special4);
-            break;
-          default:
-            break;
-        }
-      }
+    var preference = document.querySelector("#" + characterTypes[i]).checked;
+    if (preference) {
+      typesToInclude.push(characterTypes[i]);
     }
-  // return the character types that should be included in the password.
-  if (typesToInclude.length === 0) {
-    window.alert("You must include uppercase, lowercase, numerical, and/or special characters to generate a password. Please try again.")
-    return getCharacterTypes();
-  } else {
-    return typesToInclude;
   }
+
+  // return the types that are selected
+  return typesToInclude
+}
+
+var getCharacterTypes = function(){
+  // iterate through character types and record whether they should be included
+  var typesToInclude = getCharacterTypePreferences();
+  var characterOptions = [];
+
+  // if no character types were specified, send a message to the user
+  if (typesToInclude.length === 0) {
+    var formMessageElement = document.querySelector("#form-message");
+    formMessageElement.textContent = "You must choose a character type to include!";
+    return;
+  }
+
+  // define characterType objects that will be used to write the password
+  for (var i = 0; i < typesToInclude.length; i++) {
+    switch (typesToInclude[i]) {
+      case "number":
+        let numbers = new characterType("number", 48, 57);
+        characterOptions.push(numbers);
+        break;
+      case "uppercase":
+        let uppercase = new characterType("uppercase letters", 65, 90);
+        characterOptions.push(uppercase);
+        break;
+      case "lowercase":
+        let lowercase = new characterType("lowercase letters", 97, 122);
+        characterOptions.push(lowercase);
+        break;
+      case "special":
+        var special1 = new characterType("special characters", 32, 47);
+        var special2 = new characterType("special characters", 58, 64);
+        var special3 = new characterType("special characters", 91, 96);
+        var special4 = new characterType("special characters", 123, 126);
+        characterOptions.push(special1, special2, special3, special4);
+        break;
+      default:
+        break;
+    }
+  }
+
+  // return the characters that should be included in the password.
+  return characterOptions;
 };
 
 function generateCharacterCode(characterTypes) {
+
     // randomly choose the character type
     var typeIndex = Math.floor(Math.random() * characterTypes.length);
     var characterType = characterTypes[typeIndex];
-    // randomly choose a character from the possible characters
     return Math.floor(Math.random() * (characterType.max - characterType.min + 1)) + characterType.min;
 };
 
 function generatePassword() {
+
   // define the length and character types to include
-  var passwordLength = getCharacterLength();  // should be an integer
-  var typesToInclude = getCharacterTypes();  // array of characterType objects
+  var passwordLength = getCharacterLength();
+  var typesToInclude = getCharacterTypes();
+
   // write the password
   var password = "";
   for (i = 0; i < passwordLength; i++) {
@@ -109,17 +101,21 @@ function generatePassword() {
   return password;
 }
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
+// event handlers
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var passwordText = document.querySelector("#generated-password");
+  passwordText.textContent = password;
+}
 
-  passwordText.value = password;
+function lengthSliderHandler(event){
+  document.querySelector("#password-length").textContent = event.target.value;
 
 }
 
-// Add event listener to generate button
+// Add event listener to form elements button
 generateBtn.addEventListener("click", writePassword);
+passwordLengthSlider.addEventListener("input", lengthSliderHandler);
+
+// write a password on load
+writePassword();
