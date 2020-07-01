@@ -14,40 +14,32 @@
       </header>
 
       <main>
-        <!-- generated password -->
         <section class="card">
           <div class="card-content">
-            <h2 class="card-title">Password</h2>
+            <h2 class="card-title">Your Password:</h2>
             <div id="password-container">
-              <div id="password">
-                <textarea id="generated-password"></textarea>
-              </div>
-              <div id="generate-button">
-                <svg viewBox="0 0 16 16" class="bi bi-arrow-repeat" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
-                  <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
-                </svg>
-              </div>
-              <div id="copy-button">
-                <svg viewBox="0 0 16 16" class="bi bi-files" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M3 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3z"/>
-                  <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
-                </svg>
+              <div id="result-container"></div>
+              <div id="password-action-container">
+                <div id="generate-button">
+                  <svg viewBox="0 0 16 16" class="bi bi-arrow-repeat" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
+                    <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
+                  </svg>
+                </div>
+                <div id="copy-button">
+                  <svg viewBox="0 0 16 16" class="bi bi-files" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3z"/>
+                    <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        <!-- preferences -->
-        <section class="card">
-          <div class="card-content">
             <form id="password-preference-form">
-              <h2 class="card-title">Preferences</h2>
               <div class="form-body">
 
                 <!-- messages -->
                 <div class="form-container">
-                  <p id="form-message"></p>
                 </div>
 
                 <!-- password length -->

@@ -1,4 +1,5 @@
 // load DOM elements
+var resultContainer = document.querySelector("#result-container");
 var generateBtn = document.querySelector("#generate-button");
 var copyBtn = document.querySelector("#copy-button");
 var passwordLengthSlider = document.querySelector("#character-count");
@@ -39,11 +40,20 @@ var getCharacterTypes = function(){
   var typesToInclude = getCharacterTypePreferences();
   var characterOptions = [];
 
+  // create the result element
+  var resultElement = document.createElement("p");
+
   // if no character types were specified, send a message to the user
   if (typesToInclude.length === 0) {
-    var formMessageElement = document.querySelector("#form-message");
-    formMessageElement.textContent = "You must choose a character type to include!";
+    resultElement.textContent = "You must choose a character type to include!";
+    resultElement.className = "message";
+    resultContainer.appendChild(resultElement);
     return;
+  } else {
+    resultElement.className = "generated-password";
+    resultElement.id = "generated-password";
+    resultElement.setAttribute("content-editable", true);
+    resultContainer.appendChild(resultElement);
   }
 
   // define characterType objects that will be used to write the password
@@ -91,6 +101,11 @@ function generatePassword() {
   var passwordLength = getCharacterLength();
   var typesToInclude = getCharacterTypes();
 
+  if (!typesToInclude) {
+    console.error("No character types were selected. Aborting password generation.");
+    return;
+  }
+
   // write the password
   var password = "";
   for (i = 0; i < passwordLength; i++) {
@@ -104,9 +119,12 @@ function generatePassword() {
 
 // event handlers
 function writePassword() {
+  resultContainer.innerHTML = "";
   var password = generatePassword();
-  var passwordText = document.querySelector("#generated-password");
-  passwordText.textContent = password;
+  if (password){
+    var passwordElement = document.querySelector("#generated-password");
+    passwordElement.textContent = password;
+  }
 }
 
 function copyBtnHandler() {
