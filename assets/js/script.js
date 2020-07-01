@@ -129,7 +129,8 @@ function writePassword() {
   }
 }
 
-function copyBtnHandler() {
+function copyBtnHandler(event) {
+  event.preventDefault();
 
   // get the password
   var copyText = document.querySelector("#generated-password").textContent;
@@ -149,6 +150,7 @@ function copyBtnHandler() {
 }
 
 function lengthSliderHandler(event){
+  event.preventDefault();
   document.querySelector("#password-length").textContent = event.target.value;
   writePassword();
 }
