@@ -63,7 +63,10 @@ h2 {
 /* form styles start */
 #slide-container {
     width: 100%;
-    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+.form-container {
+    margin-bottom: 16px;
 }
 .slider {
     -webkit-appearance: none;

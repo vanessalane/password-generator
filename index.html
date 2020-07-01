@@ -15,12 +15,12 @@
 
       <main>
         <!-- generated password -->
-        <div class="card">
+        <section class="card">
           <div class="card-content">
             <h2 class="card-title">Password</h2>
             <div id="password-container">
               <div id="password">
-                  <p id="generated-password">foobarfoo</p>
+                  <p id="generated-password"></p>
               </div>
               <div id="generate-button">
                 <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="#78909c" xmlns="http://www.w3.org/2000/svg">
@@ -30,47 +30,62 @@
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         <!-- preferences -->
-        <div class="card">
+        <section class="card">
           <div class="card-content">
             <form id="password-preference-form">
               <h2 class="card-title">Preferences</h2>
               <div class="form-body">
-                  <div id="slide-container">
-                    <div class="form-input-container">
-                      <p>Length: <span id="password-length">16</span></p>
-                      <input type="range" min="8" max="50" value="16" class="slider" id="character-count">
-                    </div>
+
+                <!-- messages -->
+                <div class="form-container">
+                  <p id="form-message"></p>
+                </div>
+
+                <!-- password length -->
+                <div id="form-container">
+                  <div class="slide-container">
+                    <p>Length: <span id="password-length">16</span></p>
+                    <input type="range" min="8" max="50" value="16" class="slider" step=1 id="character-count">
                   </div>
-                  <div id="character-types">
-                    <div class="form-input-container">
-                      <label for="special">
-                        <input type="checkbox" id="special" value="special" /> Special
-                      </label>
-                    </div>
-                    <div class="form-input-container">
-                      <label for="uppercase">
-                        <input type="checkbox" id="uppercase" value="uppercase" /> Uppercase
-                      </label>
-                    </div>
-                    <div class="form-input-container">
-                      <label for="lowercase">
-                        <input type="checkbox" id="lowercase" value="lowercase" /> Lowercase
-                      </label>
-                    </div>
-                    <div class="form-input-container">
-                      <label for="number">
-                        <input type="checkbox" id="number" value="number" /> Numbers
-                      </label>
-                    </div>
+                </div>
+
+                <br>
+
+                <!-- password length -->
+                <div id="character-types" class="form-container">
+                  <div>
+                    <label for="special">
+                      <input type="checkbox" id="special" value="special" checked="true"/> Special
+                    </label>
                   </div>
+                  <div>
+                    <label for="uppercase">
+                      <input type="checkbox" id="uppercase" value="uppercase" checked="true"/> Uppercase
+                    </label>
+                  </div>
+                  <div>
+                    <label for="lowercase">
+                      <input type="checkbox" id="lowercase" value="lowercase" checked="true"/> Lowercase
+                    </label>
+                  </div>
+                  <div>
+                    <label for="number">
+                      <input type="checkbox" id="number" value="number" checked="true"/> Numbers
+                    </label>
+                  </div>
+                </div>
+
               </div>
             </form>
-          </div>
-        </div>
 
+          </div>
+        </section>
+
+      </main>
+      
     <script src="assets/js/script.js"></script>
   </body>
 </html>
