@@ -3,6 +3,7 @@ var resultContainer = document.querySelector("#result-container");
 var generateBtn = document.querySelector("#generate-button");
 var copyBtn = document.querySelector("#copy-button");
 var passwordLengthSlider = document.querySelector("#character-count");
+var characterCheckboxes = document.querySelector("#character-types");
 
 // characterType object model
 var characterType = function(name, min, max) {
@@ -143,6 +144,7 @@ generateBtn.addEventListener("click", writePassword);
 copyBtn.addEventListener("click", copyBtnHandler);
 passwordLengthSlider.addEventListener("input", lengthSliderHandler);
 passwordLengthSlider.addEventListener("change", writePassword);
+characterCheckboxes.addEventListener('change', writePassword);
 
 // write a password on load
 writePassword();
