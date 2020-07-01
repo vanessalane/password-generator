@@ -26,4 +26,4 @@ GIVEN I need a new, secure password:
 - WHEN the password is generated, THEN the password is either displayed in an alert or written to the page
 
 ## Screenshot
-![Screenshot](password_generator_screenshot.png)
+![Screenshot](https://media.giphy.com/media/Svdp7vWMmWAFczGxm0/giphy.gif)
