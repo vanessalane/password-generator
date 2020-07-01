@@ -1,6 +1,7 @@
 * {
     margin: 0px;
     font-family: 'Montserrat', sans-serif;
+    color: #0D1321;
 }
 body {
     background-color: #98A886;
@@ -14,7 +15,7 @@ header {
 }
 p {
     line-height: 1.5;
-    word-break: break-all;
+    word-wrap: normal;
 }
 
 /* text styles start */
@@ -36,17 +37,12 @@ h2 {
 .card {
     border-radius: 5px;
     background-color: #FAFAF1;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-    padding: 24px 48px 48px 48px;
-    margin-bottom: 16px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,.08);
     font-size: 1.5vw;
+    padding: 24px 48px 48px 48px;
 }
 .card-title {
-    padding-bottom: 8px;
-}
-.card-content {
-    color: #0D1321;
-    margin: auto;
+    padding-bottom: 8px; 
 }
 /* card styles end */
 
@@ -56,10 +52,10 @@ h2 {
 }
 .generated-password { 
     font-family: 'Source Code Pro', monospace;
-    width: 100%;
     font-size: 2.5vw;
     border-bottom: 1px solid #577399;
     margin-bottom: 8px;
+    word-break: break-all;
 }
 #password-action-container {
     display: flex;
@@ -74,7 +70,7 @@ h2 {
     fill: #C8553D;
 }
 .message {
-    color: #D14F40;
+    color: #C8553D;
     line-height: 1.5;
 }
 label.checkbox-label input[type=checkbox]{
@@ -82,20 +78,15 @@ label.checkbox-label input[type=checkbox]{
     vertical-align: middle;
     bottom: 1px;
 }
-#slide-container {
-    width: 100%;
-    margin-bottom: 16px;
-}
 .slider {
     -webkit-appearance: none;
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
     height: 2px;
-    outline: none;
     opacity: 0.7;
     background-color: #577399;
-    border-radius: 30px;
     transition: opacity .2s;
     width: 100%;
+    outline: none;
 }
 .slider:hover {
   opacity: 1; /* Fully shown on mouse-over */
@@ -113,7 +104,7 @@ label.checkbox-label input[type=checkbox]{
     height: 20px; /* Slider handle height */
     background: #577399; /* Green background */
 }
-#character-types {
+#character-types-container {
     margin-top: 8px;
     display: grid;
     grid-template-columns: repeat(4, auto);
@@ -124,10 +115,9 @@ label.checkbox-label input[type=checkbox]{
 @media screen and (max-width: 768px) {
     main {
         width: 90%;
-        margin: auto;
     }
     h1 {
-        font-size: 7vw;
+        font-size: 10vw;
     }
     h2 {
         font-size: 5vw;
@@ -137,7 +127,6 @@ label.checkbox-label input[type=checkbox]{
     }
     .generated-password {
         font-size: 4vw;
-        text-align: center;
     }
     .bi {
         height: 5vw;
@@ -146,7 +135,7 @@ label.checkbox-label input[type=checkbox]{
         fill: #577399;
     }
     .card {
-        font-size: 2vw;
+        font-size: 2.25vw;
     }
 
 }
@@ -157,9 +146,6 @@ label.checkbox-label input[type=checkbox]{
     }
     h2 {
         font-size: 8vw;
-    }
-    #result {
-        line-height: 5;
     }
     .message {
         text-align: center;
@@ -172,15 +158,16 @@ label.checkbox-label input[type=checkbox]{
     }
     #password-action-container {
         justify-content: space-evenly;
+        margin-bottom: 16px;
     }
     .bi {
         height: 8vw;
     }
     .card {
         font-size: 4vw;
+        padding: 16px 32px 32px 32px;
     }
-    #character-types {
-        margin-top: 16px;
+    #character-types-container {
         grid-template-columns: repeat(2, 1fr);
         text-align: left;
         grid-gap: 16px;

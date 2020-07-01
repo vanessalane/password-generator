@@ -1,22 +1,16 @@
 // load DOM elements
 var resultContainer = document.querySelector("#result-container");
+var actionContainer = document.querySelector("#password-action-container");
 var generateBtn = document.querySelector("#generate-button");
 var copyBtn = document.querySelector("#copy-button");
-var passwordLengthSlider = document.querySelector("#character-count");
-var characterCheckboxes = document.querySelector("#character-types");
+var passwordLengthSlider = document.querySelector("#password-length-slider");
+var characterCheckboxes = document.querySelector("#character-types-container");
 
 // characterType object model
 var characterType = function(name, min, max) {
   this.name = name,
   this.min = min,
   this.max = max
-};
-
-var getCharacterLength = function(){
-  // get the length from the slider element
-  var slider = document.querySelector("#character-count");
-  var length = slider.value;
-  return parseInt(length);
 };
 
 var getCharacterTypePreferences = function() {
@@ -41,19 +35,22 @@ var getCharacterTypes = function(){
   var typesToInclude = getCharacterTypePreferences();
   var characterOptions = [];
 
-  // create the result element
+  // manipulate the DOM based on the types to include
+  var actionContainer = document.querySelector("#password-action-container");
   var resultElement = document.createElement("p");
 
-  // if no character types were specified, send a message to the user
+  // if no character types were specified, send a message to the user and hide the password actions
   if (typesToInclude.length === 0) {
+    actionContainer.style.display = "none";
     resultElement.textContent = "You must choose a character type to include!";
     resultElement.className = "message";
     resultContainer.appendChild(resultElement);
     return;
-  } else {
+  }  // otherwise, display the actions
+  else {
+    actionContainer.style.display = "flex";
     resultElement.className = "generated-password";
     resultElement.id = "generated-password";
-    resultElement.setAttribute("content-editable", true);
     resultContainer.appendChild(resultElement);
   }
 
@@ -99,7 +96,7 @@ function generateCharacterCode(characterTypes) {
 function generatePassword() {
 
   // define the length and character types to include
-  var passwordLength = getCharacterLength();
+  var passwordLength = passwordLengthSlider.value;
   var typesToInclude = getCharacterTypes();
 
   if (!typesToInclude) {
@@ -120,7 +117,11 @@ function generatePassword() {
 
 // event handlers
 function writePassword() {
+
+  // clear any prior results
   resultContainer.innerHTML = "";
+
+  // if a password can be generated, add it to the results section
   var password = generatePassword();
   if (password){
     var passwordElement = document.querySelector("#generated-password");
@@ -129,14 +130,27 @@ function writePassword() {
 }
 
 function copyBtnHandler() {
-  var copyText = document.querySelector("#generated-password");
-  copyText.select();
+
+  // get the password
+  var copyText = document.querySelector("#generated-password").textContent;
+
+  // create a temporary textarea element for the copy
+  var tempTextArea = document.createElement("textarea");
+  tempTextArea.value = copyText;
+  document.body.appendChild(tempTextArea);
+
+  // select the textarea and copy its contents
+  tempTextArea.select();
   document.execCommand("copy");
-  copyText.blur();
+  tempTextArea.blur();
+
+  // remove the textarea element
+  document.body.removeChild(tempTextArea);
 }
 
 function lengthSliderHandler(event){
   document.querySelector("#password-length").textContent = event.target.value;
+  writePassword();
 }
 
 // Add event listeners
