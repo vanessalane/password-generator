@@ -1,10 +1,9 @@
 * {
     margin: 0px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
 }
 body {
-    background-color: #cfd8dc;
+    background-color: #98A886;
 }
 main {
     width: 50%;
@@ -21,25 +20,27 @@ h1, h2 {
 h1 {
     font-size: 63px;
     text-align: center;
+    color: #FFFDF5;
 }
 h2 {
     font-size: 24px;
+    color: #1C4B67;
 }
 /* text styles end */
 
 /* card styles start */
 .card {
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: #FFFDF5;
     box-shadow: 0 5px 15px rgba(0,0,0,.08);
-    padding: 30px;
+    padding: 10px 30px 15px 30px;
     margin-bottom: 16px;
 }
 .card-title {
-    margin-bottom: 16px;
+    padding-bottom: 8px;
 }
 .card-content {
-    color: #000;
+    color: #0D1321;
     margin: auto;
 }
 /* card styles end */
@@ -47,40 +48,65 @@ h2 {
 /* password styles start */
 #password-container {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-around;
 }
 #password {
     margin-bottom: 0px;
-    border-bottom: 0.5px solid #cfd8dc;
+    border-bottom: 0.5px solid #577399;
     flex-grow: 1;
 }
+#generated-password {
+
+    font-size: 20px;
+}
 .bi-arrow-repeat:hover {
-    fill: #263238;
+    fill: #C8553D;
 }
 /* password styles end */
 
 /* form styles start */
+.form-body {
+    font-size: 12px;
+}
+#form-message {
+    color: #a39997;
+}
+label.checkbox-label input[type=checkbox]{
+    position: relative;
+    vertical-align: middle;
+    bottom: 1px;
+}
 #slide-container {
     width: 100%;
-    margin-bottom: 16px;
-}
-.form-container {
     margin-bottom: 16px;
 }
 .slider {
     -webkit-appearance: none;
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    height: 5px;
+    height: 2px;
     outline: none;
     opacity: 0.7;
-    background-color: #cfd8dc;
+    background-color: #577399;
     border-radius: 30px;
     transition: opacity .2s;
     width: 100%;
 }
 .slider:hover {
   opacity: 1; /* Fully shown on mouse-over */
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  border-radius: 30px;
+  background: #577399; /* Green background */
+}
+.slider::-moz-range-thumb {
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: #577399; /* Green background */
 }
 #character-types {
     display: grid;
