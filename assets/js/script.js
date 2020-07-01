@@ -1,5 +1,6 @@
 // load DOM elements
 var generateBtn = document.querySelector("#generate-button");
+var copyBtn = document.querySelector("#copy-button");
 var passwordLengthSlider = document.querySelector("#character-count");
 
 // characterType object model
@@ -108,14 +109,22 @@ function writePassword() {
   passwordText.textContent = password;
 }
 
-function lengthSliderHandler(event){
-  document.querySelector("#password-length").textContent = event.target.value;
-
+function copyBtnHandler() {
+  var copyText = document.querySelector("#generated-password");
+  copyText.select();
+  document.execCommand("copy");
+  copyText.blur();
 }
 
-// Add event listener to form elements button
+function lengthSliderHandler(event){
+  document.querySelector("#password-length").textContent = event.target.value;
+}
+
+// Add event listeners
 generateBtn.addEventListener("click", writePassword);
+copyBtn.addEventListener("click", copyBtnHandler);
 passwordLengthSlider.addEventListener("input", lengthSliderHandler);
+passwordLengthSlider.addEventListener("change", writePassword);
 
 // write a password on load
 writePassword();

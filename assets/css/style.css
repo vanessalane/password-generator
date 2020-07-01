@@ -48,19 +48,29 @@ h2 {
 /* password styles start */
 #password-container {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 #password {
     margin-bottom: 0px;
-    border-bottom: 0.5px solid #577399;
     flex-grow: 1;
 }
-#generated-password {
-
-    font-size: 20px;
+#generated-password {  /* this is a textarea element */
+    background-color: rgba(0,0,0,0);
+    border: none;
+    border-bottom: 1px solid rgba(87, 115, 153, 0.5);
+    font-family: 'Source Code Pro', monospace;
+    height: auto;
+    outline: none;
+    resize: none;
+    width: 100%;
 }
-.bi-arrow-repeat:hover {
+.bi {
+    fill: #577399;
+    height: 30px;
+    margin-left: 10px;
+}
+.bi:hover {
     fill: #C8553D;
 }
 /* password styles end */
