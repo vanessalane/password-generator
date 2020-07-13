@@ -156,8 +156,15 @@ function lengthSliderHandler(event){
 }
 
 // Add event listeners
+document.addEventListener("click", function(event) {
+  event.preventDefault();
+})
 generateBtn.addEventListener("click", writePassword);
-copyBtn.addEventListener("click", copyBtnHandler);
+actionContainer.addEventListener('mousedown', function (event) {
+  if (event.detail > 1) {
+    event.preventDefault();
+  }
+}, false);
 passwordLengthSlider.addEventListener("input", lengthSliderHandler);
 passwordLengthSlider.addEventListener("change", writePassword);
 characterCheckboxes.addEventListener('change', writePassword);
