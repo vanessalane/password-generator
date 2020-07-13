@@ -156,9 +156,6 @@ function lengthSliderHandler(event){
 }
 
 // Add event listeners
-document.addEventListener("click", function(event) {
-  event.preventDefault();
-})
 generateBtn.addEventListener("click", writePassword);
 actionContainer.addEventListener('mousedown', function (event) {
   if (event.detail > 1) {
